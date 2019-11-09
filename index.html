@@ -1,0 +1,176 @@
+<html>
+    <main>
+        <h1>Etch-a-Sketch</h1>
+      <section>
+        <button id="resize">Resize Grid</button>
+        <button id="clean">Clean Canvas</button>
+        <button id="shader">Shader</button>
+      </section>
+        <div class="container">
+            <div id="grid-screen"></div>   
+        </div>
+         
+    </main>
+</html>
+<style>
+  *{
+    margin:0;
+    padding:0;
+    text-align:center;
+    box-sizing:border-box;
+  }
+  section{
+    position:relative;
+  }
+  
+  button{
+    text-align:center;
+    background:#404040;
+    color:#ffffff;
+    padding:10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    margin:10px;
+  }
+  button:hover{
+    color:#404040;
+    background:none;
+    font-weight:700;
+    transition:all 0.3s ease 0s;
+  }
+  .container{
+    width:600px;
+    height:600px;
+    border-radius: 2%;
+    margin:0 auto;
+    display: flex;
+    flex-direction: column;
+    padding:50px 20px;
+    background-color: #f8f7f7;
+  }
+  .row{
+    flex:1;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+  }
+  .box{
+    flex:1;
+    box-sizing: content-box;
+    border:1px solid rgb(231, 227, 228);
+  }
+  </style>
+<script>
+const gridContainer = document.querySelector('.container')
+const resize_btn = document.getElementById("resize");
+const clean_btn = document.getElementById("clean");
+const shader_btn = document.getElementById("shader")
+
+function main(){
+shader_btn.addEventListener("click",function(){
+addEventToBoxs(shading);
+});
+
+clean_btn.addEventListener("click",function(){
+  clearGrid();
+  createGrid(10);
+});
+
+resize_btn.addEventListener("click",function(){
+ userChoice(); 
+ });
+}
+main();
+function userChoice(){
+  function gridSize(){
+  return(prompt(`Size please`));
+  }
+  function invalid(){
+  return(prompt(`Invalid option. In case you wonder what number you should input, we recommend 25.^^`));
+  }
+  var playerChoice = gridSize();
+  while(playerChoice==""|null){
+  playerChoice= invalid();
+  }
+  clearGrid();
+  createGrid(playerChoice);
+}// end of function of userChoice
+
+function createASquare(){
+  const div = document.createElement('div');
+  div.classList.add('box');
+  return div;
+}
+function addEventToBoxs(changeColor){
+  const boxs = document.querySelectorAll('.box');
+  boxs.forEach(box => box.addEventListener("mouseover",changeColor));
+  }
+function createGrid(size){
+  for(let i=0;i<size;i++){
+    const cont=document.createElement('div');
+    cont.classList.add('row');
+    
+    for(let a=0;a<size;a++){
+      cont.appendChild(createASquare());
+    }
+    gridContainer.appendChild(cont);
+  }
+  if(shader_btn.clicked==true){
+    console.log("wow");
+  }
+  addEventToBoxs(changeColor);
+}
+
+function shading(){
+let addOpacity = this.style.opacity;
+let newOpacity = Number(addOpacity) + 0.1;
+this.style.opacity = newOpacity;
+}
+function changeColor(){
+  this.style.backgroundColor = "#888383";
+}
+
+function clearGrid(){
+  let cells = document.querySelectorAll('.row');
+  cells.forEach(cell =>{
+    cell.remove();
+  });
+}
+createGrid(10);
+
+
+</script>
+
+<!-- /* #container {  
+  max-height: 100vh;
+  width:100vw;
+  display: grid;
+  grid-template-columns: repeat(5,auto);
+  grid-template-columns: repeat(5,auto);
+  grid-gap: 5px;
+}
+#container div {
+  background-color: red;
+}
+
+#container div::before {
+  content: "";
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+</style>
+<script>
+const gridScreen=document.querySelector("#grid-screen");
+const container=document.getElementById("container");
+function makeRows(rows, cols) {
+  container.style.setProperty('--grid-rows', rows);
+  container.style.setProperty('--grid-cols', cols);
+  for (c = 0; c < (rows * cols); c++) {
+    let cell = document.createElement("div");
+    container.appendChild(cell).className = "grid-item";
+  };
+};
+
+makeRows(1,); */ -->
