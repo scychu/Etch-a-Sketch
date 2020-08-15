@@ -1,4 +1,4 @@
-A Etch a Sketch for The ODIN Project.
+A Etch a Sketch for The ODIN Project.<br>
 Follow the instructions atop Odin’s Google Homepage project to setup a git repository for this project.
 Create a webpage with a 16x16 grid of square divs
 Create the divs using JavaScript… don’t try making them by hand with copy and pasting in your html file!
