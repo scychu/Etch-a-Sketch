@@ -90,7 +90,7 @@ function userChoice(){
   return(prompt(`Invalid option. In case you wonder what number you should input, we recommend 25.^^`));
   }
   var playerChoice = gridSize();
-  while(playerChoice==""|null){
+  while(playerChoice==""|null||>100){
   playerChoice= invalid();
   }
   clearGrid();
